@@ -1,0 +1,24 @@
+{
+  "name": "documentation",
+  "version": "1.0.0",
+  "description": "Welcome to **UrsaWorks** — an automation platform for managing Ursa feature/config approval requests. This guide is end‑user focused and reflects the current behavior of the UrsaWorks web app and companion tools.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnneerdael/UrsaWorks-Documentation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/johnneerdael/UrsaWorks-Documentation/issues"
+  },
+  "homepage": "https://github.com/johnneerdael/UrsaWorks-Documentation#readme",
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}
