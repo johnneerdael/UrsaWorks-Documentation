@@ -18,12 +18,34 @@ UrsaWorks Companion is a tray app that:
 - Exposes `http://localhost:8765/ping` so the web app can detect it
 - Sends Google OAuth codes back to your browser automatically
 
+**Download:**
+- [Windows & macOS](https://github.com/johnneerdael/UrsaWorks-Companion/releases/latest)
+- [iOS](https://github.com/johnneerdael/UrsaWorks-Mobile-Companion/releases/latest) *(requires App Store distribution or ad-hoc signing)*
+- [Android](https://github.com/johnneerdael/UrsaWorks-Mobile-Companion/releases/latest)
+
 **Steps:**
-1. Launch **UrsaWorks Companion** on your machine
-2. Go to the UrsaWorks login page
-3. Click **"Sign in with UrsaWorks Companion"**
-4. Complete Google auth
-5. You return to UrsaWorks automatically
+1. Download and launch **UrsaWorks Companion** for your platform
+2. On macOS, run: `sudo xattr -rd com.apple.quarantine /Applications/UrsaWorksCompanion.app` if needed
+3. Go to the UrsaWorks login page
+4. Click **"Sign in with UrsaWorks Companion"**
+5. Complete Google auth
+6. You return to UrsaWorks automatically
+
+**Logs:** View logs from the tray icon menu on desktop platforms.
+
+### Mobile Companion
+
+The mobile companion supports OAuth flow via deep links on iOS and Android.
+
+**Download:**
+- [iOS](https://github.com/johnneerdael/UrsaWorks-Mobile-Companion/releases/latest) *(requires ad-hoc or App Store signing)*
+- [Android](https://github.com/johnneerdael/UrsaWorks-Mobile-Companion/releases/latest)
+
+**Steps:**
+1. Install the companion app
+2. Tap **"Sign in with UrsaWorks Companion"** on mobile
+3. Complete Google auth in the companion app
+4. Return to UrsaWorks automatically
 
 ### Manual Copy/Paste
 

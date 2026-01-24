@@ -35,6 +35,20 @@
 - For state-changing API requests, UrsaWorks relies primarily on browser cookie protections (SameSite defaults) and same-site deployments
 - If UrsaWorks is hosted cross-site or embedded, consider hardening with explicit `SameSite` cookie settings, strict CORS allowlists, and/or Origin/Referer checks (and a CSRF token if needed)
 
+### Server hardening configuration
+
+These settings are most relevant when running behind a TLS reverse proxy (e.g., Caddy) and serving the UI from a known origin.
+
+- `CORS_ALLOWED_ORIGINS`: comma-separated list of allowed browser origins for credentialed requests (recommended in production)
+	- Example: `https://ursaworks.example.com`
+- `CSRF_REQUIRE_ORIGIN`: when `true`, reject unsafe authenticated requests (POST/PUT/PATCH/DELETE) if both `Origin` and `Referer` headers are missing
+	- Recommended: `true` in production (set to `false` only if required by non-browser clients)
+- `AUTH_COOKIE_SAMESITE`: cookie `SameSite` policy for auth-related cookies (`lax` | `strict` | `none`)
+	- Recommended: `lax` for same-site deployments
+- `AUTH_COOKIE_SECURE`: override cookie Secure behavior (`true`/`false`); default follows `NODE_ENV === 'production'`
+- `AUTH_RATE_LIMIT_MAX`, `AUTH_RATE_LIMIT_WINDOW`: rate limiting for auth endpoints (defaults: `30` per `1 minute`)
+- `SESSION_RATE_LIMIT_MAX`, `SESSION_RATE_LIMIT_WINDOW`: rate limiting for session endpoints (defaults: `30` per `1 minute`)
+
 ## Companion Security
 
 - OAuth redirect URIs allowlisted server-side
