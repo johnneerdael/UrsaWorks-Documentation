@@ -1,0 +1,1 @@
+import{_ as o,o as r,c as a,ae as n}from"./chunks/framework.BD9pLfSD.js";const d=JSON.parse('{"title":"Rules","description":"","frontmatter":{},"headers":[],"relativePath":"rules.md","filePath":"rules.md"}'),s={name:"rules.md"};function t(l,e,i,u,g,c){return r(),a("div",null,[...e[0]||(e[0]=[n("",22)])])}const p=o(s,[["render",t]]);export{d as __pageData,p as default};

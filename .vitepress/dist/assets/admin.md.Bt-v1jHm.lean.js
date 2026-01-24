@@ -1,0 +1,1 @@
+import{_ as e,o as s,c as r,ae as a}from"./chunks/framework.BD9pLfSD.js";const u=JSON.parse('{"title":"Admin","description":"","frontmatter":{},"headers":[],"relativePath":"admin.md","filePath":"admin.md"}'),i={name:"admin.md"};function l(n,o,t,p,d,h){return s(),r("div",null,[...o[0]||(o[0]=[a("",14)])])}const c=e(i,[["render",l]]);export{u as __pageData,c as default};
