@@ -1,62 +1,55 @@
 # Security
 
-## Authentication
+This document explains UrsaWorks security in plain language: what’s protected, what’s stored, and what you should expect as a user.
 
-- **Google OAuth2** is required for application access
-- Email validation against an approved-users allowlist
-- Case-insensitive email matching
-- OAuth secrets are server-side only
-- The server does **not** store any URSA session values (URSA cookie/user-agent) long-term; those are provided by the client when needed
+## Authentication and identity
 
-## URSA Session
+- UrsaWorks uses Google OAuth2 to sign you in.
+- Your email must be on the approved-users allowlist.
+- Email matching is case-insensitive.
+- OAuth client secrets live only on the server.
 
-- **Two separate logins**: UrsaWorks (Google) + URSA (cookie + user agent)
-- URSA session data stored in browser sessionStorage
-- Cleared when you log out or close the tab
-- Manual session inputs saved in localStorage (you can clear it)
-- URSA login **must match** the Google-authenticated email; mismatches are rejected during session verification
+## URSA session (separate from UrsaWorks)
 
-## Authorization
+- UrsaWorks login (Google) and URSA login (cookie + user agent) are two different things.
+- URSA session data is kept in the browser (sessionStorage) and is cleared when you log out or close the tab.
+- Manual session inputs are saved in the browser (localStorage) for convenience.
+- UrsaWorks rejects URSA sessions that don’t match the Google-authenticated email.
 
-- **Approval pools** from URSA determine which approvals/configs you can see (URSA is the source of truth)
-- UrsaWorks does not maintain separate “approval groups” for authorization; it uses URSA-derived catalogs and per-user visibility settings in the UI
-- Shared resources (e.g., shared profiles) are readable when there is URSA approval-pool overlap between users
+## What UrsaWorks stores
 
-## Data Handling
+- UrsaWorks does not persist your URSA cookie/user-agent on the server.
+- UrsaWorks does store application data like rules and run history in its own database.
+- Actions against URSA are made using your URSA session when you initiate them.
 
-- UrsaWorks does **not** store URSA session server-side
-- Run history and rules stored in UrsaWorks database
-- All actions forwarded to URSA with your session
+## Browser and API protections
 
-## CSRF & Browser Protections
+UrsaWorks uses multiple layers of protection for browser-based usage:
 
-- Google OAuth uses a signed `state` cookie and verifies it on callback (CSRF protection for the OAuth flow)
-- UrsaWorks API authentication uses a signed, `httpOnly` session cookie
-- For state-changing API requests, UrsaWorks relies primarily on browser cookie protections (SameSite defaults) and same-site deployments
-- If UrsaWorks is hosted cross-site or embedded, consider hardening with explicit `SameSite` cookie settings, strict CORS allowlists, and/or Origin/Referer checks (and a CSRF token if needed)
+- OAuth flow CSRF protection: Google OAuth uses a signed `state` cookie and verifies it on callback.
+- Signed, `httpOnly` session cookie: the UrsaWorks session is stored in a cookie that JavaScript cannot read.
+- CORS allowlist for credentialed requests: browsers are only allowed to send cookies from explicitly allowed UI origins.
+- CSRF checks for unsafe requests: for authenticated `POST`/`PUT`/`PATCH`/`DELETE`, the server validates `Origin`/`Referer` to reduce the risk of cross-site request forgery.
+- Security headers: the API sets baseline browser security headers (useful even when running behind a reverse proxy).
+- Rate limiting: auth/session endpoints are rate-limited to reduce abuse and brute-force attempts.
 
-### Server hardening configuration
+## Companion security
 
-These settings are most relevant when running behind a TLS reverse proxy (e.g., Caddy) and serving the UI from a known origin.
+- Companion flows still rely on OAuth redirect URIs that are allowlisted on the Google OAuth client.
+- If you don’t control the Google Cloud Console for the OAuth client, you may be forced to use whatever redirect URI is already registered (often a `localhost` callback).
 
-- `CORS_ALLOWED_ORIGINS`: comma-separated list of allowed browser origins for credentialed requests (recommended in production)
-	- Example: `https://ursaworks.example.com`
-- `CSRF_REQUIRE_ORIGIN`: when `true`, reject unsafe authenticated requests (POST/PUT/PATCH/DELETE) if both `Origin` and `Referer` headers are missing
-	- Recommended: `true` in production (set to `false` only if required by non-browser clients)
-- `AUTH_COOKIE_SAMESITE`: cookie `SameSite` policy for auth-related cookies (`lax` | `strict` | `none`)
-	- Recommended: `lax` for same-site deployments
-- `AUTH_COOKIE_SECURE`: override cookie Secure behavior (`true`/`false`); default follows `NODE_ENV === 'production'`
-- `AUTH_RATE_LIMIT_MAX`, `AUTH_RATE_LIMIT_WINDOW`: rate limiting for auth endpoints (defaults: `30` per `1 minute`)
-- `SESSION_RATE_LIMIT_MAX`, `SESSION_RATE_LIMIT_WINDOW`: rate limiting for session endpoints (defaults: `30` per `1 minute`)
+## Admin controls (high-level)
 
-## Companion Security
+- Admins manage the approved-users allowlist.
+- Admins can delete profiles (metadata-only).
+- Shared resources are readable when there is URSA approval-pool overlap and ownership allows it.
 
-- OAuth redirect URIs allowlisted server-side
-- Mobile companions use HTTPS-based deep links
-- Desktop companion registers local OAuth scheme
+## If you are self-hosting
 
-## Admin Controls
+You generally only need to set a few “deployment knobs” so the browser protections match your environment:
 
-- Admin role required for user management
-- Admins manage the approved-users allowlist and can delete profiles (metadata-only)
-- Shared resources respect ownership and URSA approval-pool overlap visibility
+- Set the UI origin allowlist (CORS) so only your real UI domain can call the API with cookies.
+- Keep CSRF checks enabled for browser deployments.
+- Use secure cookies in production (typically handled automatically behind TLS).
+
+See [deploy/compose/README.md](deploy/compose/README.md) for deployment configuration details.
