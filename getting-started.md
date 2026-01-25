@@ -23,7 +23,7 @@ UrsaWorks Companion is a tray app that:
 **Download:**
 - [Windows Installer](https://github.com/johnneerdael/UrsaWorks-Companion/releases/latest) (.exe installer with auto-start)
 - [macOS Installer](https://github.com/johnneerdael/UrsaWorks-Companion/releases/latest) (.pkg installer with auto-start)
-- [iOS TestFlight](https://testflight.apple.com/join/...) (for testers)
+- [iOS TestFlight - Request Invite](mailto:jneerdael@netskope.com) (On invite only)
 - [Android APK](https://github.com/johnneerdael/UrsaWorks-Mobile-Companion/releases/latest) (untested)
 
 **Steps:**
@@ -39,13 +39,9 @@ UrsaWorks Companion is a tray app that:
 
 The mobile companion supports OAuth flow via deep links on iOS and Android.
 
-**Download:**
-- [iOS TestFlight](https://testflight.apple.com/join/...) (for testers)
-- [Android APK](https://github.com/johnneerdael/UrsaWorks-Mobile-Companion/releases/latest) (untested)
-
 **Steps:**
 1. Install the companion app
-2. Open the companion app and tap **"Sign in to UrsaWorks"**
+2. Open the companion app and tap **"Open UrsaWorks"**
 3. Complete Google auth in the system browser
 4. Return to UrsaWorks automatically
 
