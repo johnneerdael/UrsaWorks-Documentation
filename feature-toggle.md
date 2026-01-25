@@ -40,6 +40,12 @@ When you enter a Tenant ID, the page fetches and displays the current state of f
 - **Disabled**: Red indicator
 - **Unknown**: Neutral styling
 
+The page also shows tenant identity information:
+- Tenant URL
+- Tenant Type
+
+This helps confirm you're working with the correct tenant before making changes.
+
 ## Error Handling
 
 The page shows appropriate messages for:
