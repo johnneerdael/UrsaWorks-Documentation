@@ -13,21 +13,6 @@
 - Check that deep links are enabled in your device settings
 - Try clearing app cache or reinstalling if redirects fail
 
-
-
-
-
-
-
-
-
-
-
-If you still cannot reach `localhost:8765`, it is usually one of:
-- Companion not running
-- Port conflict
-- Endpoint security tool blocking local loopback HTTP
-
 ### Manual login fails
 - Paste the full redirect URL or the code
 - Google codes expire quickly; retry if needed

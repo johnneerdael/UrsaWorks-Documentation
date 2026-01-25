@@ -1,0 +1,34 @@
+name: Publish Release
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '*.exe'
+      - '*.pkg'
+      - '*.apk'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate Tag
+        id: tag
+        run: echo "tag_name=v$(date +'%Y.%m.%d-%H%M%S')" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.tag.outputs.tag_name }}
+          name: Release ${{ steps.tag.outputs.tag_name }}
+          files: |
+            *.exe
+            *.pkg
+            *.apk
+          draft: false
+          prerelease: false

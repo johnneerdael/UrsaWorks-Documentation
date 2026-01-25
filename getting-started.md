@@ -21,10 +21,15 @@ UrsaWorks Companion is a tray app that:
 - Sends Google OAuth codes back to your browser automatically
 
 **Download:**
-- [Windows Installer](https://github.com/johnneerdael/UrsaWorks-Companion/releases/latest) (.exe installer with auto-start)
-- [macOS Installer](https://github.com/johnneerdael/UrsaWorks-Companion/releases/latest) (.pkg installer with auto-start)
+- [Windows Installer](https://github.com/johnneerdael/UrsaWorks-Documentation/releases/latest/download/UrsaWorksCompanion-Setup.exe) (.exe installer with auto-start)
+> Windows Installer is unsigned and Windows will warn once, which you can safely skip due to not having access to a Windows Developer account (https://www.virustotal.com/gui/file/d9e329709c0dd2d3e3d65dc9861575ac8fabc3ed6d6f2d8914417986e3007061/detection), the 1 detection is a false positive. The application is tested and validated on Windows x64 11 Pro, application will enable start on boot during install.
+- [macOS Installer (Apple Silicon)](https://github.com/johnneerdael/UrsaWorks-Documentation/releases/latest/download/UrsaWorksCompanion-mac-arm64.pkg) (.pkg installer with auto-start)
+> Both the installer and application are Developer signed meaning no errors should be seen during install, application requires manual start after which it will be enabled on startup. (Fully validated on Apple Silicon)
+- [macOS Installer (Intel)](https://github.com/johnneerdael/UrsaWorks-Documentation/releases/latest/download/UrsaWorksCompanion-mac-x64.pkg) (.pkg installer with auto-start)
+> Both the installer and application are Developer signed meaning no errors should be seen during install, application requires manual start after which it will be enabled on startup. (Untested but since it's the same code as the Apple Silicon version I expect no issues)
 - [iOS TestFlight - Request Invite](mailto:jneerdael@netskope.com) (On invite only)
-- [Android APK](https://github.com/johnneerdael/UrsaWorks-Mobile-Companion/releases/latest) (untested)
+> Sent a email to John Neerdael for immediate access, as soon as the review process is over you will be able to self-register for the testflight group. Fully validated and functional on iPhone 16 Pro on version 26. To start the flow just open the application.
+- [Android APK](https://github.com/johnneerdael/UrsaWorks-Documentation/releases/latest/download/UrsaWorksCompanion.apk) (untested)
 
 **Steps:**
 1. Download and install **UrsaWorks Companion** for your platform
