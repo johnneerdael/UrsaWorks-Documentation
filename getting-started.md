@@ -14,12 +14,12 @@ To use UrsaWorks you need:
 UrsaWorks runs as a Docker container on your localhost. To start it:
 
 ```bash
-docker run -p 3000:3000 ursaworks/ursaworks:latest
+docker compose up -d --build
 ```
 
 Once running, open your browser and navigate to:
 ```
-http://localhost:3000
+http://localhost:5173
 ```
 
 ### Step 2: Get Your URSA Session Cookie
