@@ -1,85 +1,60 @@
 # Getting Started
 
-## Access Requirements
+## Prerequisites
 
-To use UrsaWorks you must:
-- Have a `@netskope.com` Google Workspace account
-- Be added to the **Approved Users** list by an admin
-- Authenticate via Google OAuth
+To use UrsaWorks you need:
+- Docker installed on your machine
+- An active URSA account with access to approvals
+- Your URSA session cookie
 
-**Important:** Authentication does not equal authorization. Even if Google sign-in succeeds, you are blocked until your email is allowlisted in UrsaWorks.
+## Installation
 
-## Sign-In Methods
+### Step 1: Run the Docker Container
 
-### Desktop Companion (Recommended)
+UrsaWorks runs as a Docker container on your localhost. To start it:
 
-UrsaWorks Companion is a tray app that:
+```bash
+docker run -p 3000:3000 ursaworks/ursaworks:latest
+```
 
-- Registers a custom OAuth redirect scheme
-- Starts automatically on boot
-- Initiates Google OAuth in your system browser
-- Sends Google OAuth codes back to your browser automatically
+Once running, open your browser and navigate to:
+```
+http://localhost:3000
+```
 
-**Download:**
-- [Windows Installer](https://github.com/johnneerdael/UrsaWorks-Documentation/releases/latest/download/UrsaWorksCompanion-Setup.exe) (.exe installer with auto-start)
-> Windows Installer is unsigned and Windows will warn once, which you can safely skip due to not having access to a Windows Developer account (https://www.virustotal.com/gui/file/d9e329709c0dd2d3e3d65dc9861575ac8fabc3ed6d6f2d8914417986e3007061/detection), the 1 detection is a false positive. The application is tested and validated on Windows x64 11 Pro, application will enable start on boot during install.
-- [macOS Installer (Apple Silicon)](https://github.com/johnneerdael/UrsaWorks-Documentation/releases/latest/download/UrsaWorksCompanion-mac-arm64.pkg)
-> Both the installer and application are Developer signed meaning no errors should be seen during install, application requires manual start after which it will be enabled on startup. (Fully validated on Apple Silicon)
-- [macOS Installer (Intel)](https://github.com/johnneerdael/UrsaWorks-Documentation/releases/latest/download/UrsaWorksCompanion-mac-x64.pkg)
-> Both the installer and application are Developer signed meaning no errors should be seen during install, application requires manual start after which it will be enabled on startup. (Untested but since it's the same code as the Apple Silicon version I expect no issues)
-- [iOS TestFlight - Request Invite](mailto:jneerdael@netskope.com) (On invite only)
-> Sent a email to John Neerdael for immediate access, as soon as the review process is over you will be able to self-register for the testflight group. Fully validated and functional on iPhone 16 Pro on version 26. To start the flow just open the application.
-- [Android APK](https://github.com/johnneerdael/UrsaWorks-Documentation/releases/latest/download/UrsaWorksCompanion.apk)
-> Tested and Validated on Android Tablet succesfully
+### Step 2: Get Your URSA Session Cookie
 
-**Steps:**
-1. Download and install **UrsaWorks Companion** for your platform
-2. Launch the companion app (it will start automatically on future boots)
-3. In the companion app, click **"Sign in to UrsaWorks"**
-4. Complete Google auth in the opened browser
-5. You return to UrsaWorks automatically
+You need to extract your URSA session cookie to authenticate with UrsaWorks:
 
-**Logs:** View logs from the tray icon menu on desktop platforms.
+1. Open **URSA** in your browser and log in
+2. Open **DevTools** (F12 or right-click → Inspect)
+3. Go to **Application** → **Cookies** → select the URSA domain
+4. Find the cookie named `session`
+5. Copy the **Value** (it will be a long string)
 
-### Mobile Companion
+### Step 3: Connect Your Session
 
-The mobile companion supports OAuth flow via deep links on iOS and Android.
+Back in UrsaWorks:
 
-**Steps:**
-1. Install the companion app
-2. Open the companion app and tap **"Open UrsaWorks"**
-3. Complete Google auth in the system browser
-4. Return to UrsaWorks automatically
+1. Paste your URSA session cookie into the input field
+2. Click **Verify & Connect**
 
-### Manual Copy/Paste
-
-Use this method if you can't install the companion.
-
-**Steps:**
-1. Click **"Sign in manually (Copy/Paste)"**
-2. Click **"Open Google Login Window"**
-3. Complete Google auth
-4. Copy the final redirect URL (or just the code)
-5. Paste into UrsaWorks and click **Verify Code**
-
-## Connect Your URSA Session
-
-After signing in, connect your **URSA session** on the **Dashboard** page.
-
-**What you need:**
-- URSA `session` cookie value
-
-**Steps:**
-1. Open URSA in your browser
-2. In DevTools → Application → Cookies, copy the `session` value
-3. Paste the value into UrsaWorks
-4. Click **Verify & Connect**
-
-When verified:
-- Status changes to **ACTIVE**
+When verified successfully:
 - Your URSA email is displayed
-- Rules, feature toggle, and runs become available
+- The interface unlocks and you can access all features
+- UrsaWorks will use your URSA identity for all operations
 
-**Session checks:**
-- UrsaWorks validates your URSA session against URSA
-- If the URSA email doesn't match your UrsaWorks login, the session is rejected
+## What Happens Next
+
+UrsaWorks identifies you through your URSA session cookie. This means:
+- You can only see approvals your URSA account has access to
+- All actions are performed as your URSA user
+- When your URSA session expires, you'll need to provide a new cookie
+
+## Ready to Use
+
+Once connected, you can:
+- Create **Rules** to automate approvals
+- Use **Manual Run** to preview and execute rules
+- Use **Feature Toggle** to change config values and auto-approve
+- Manage your settings and profiles

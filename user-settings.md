@@ -7,13 +7,13 @@
 
 ## Config Visibility
 
-By default, all configs are visible.
+By default, all configs from your URSA approval configs are visible.
 If you enable filtering, only selected configs appear in dropdowns/lists on that page.
 
 This is a UI filter only:
 
-- It helps you focus on the configs you actually work with.
-- It does **not** grant additional access beyond what your URSA session allows.
+- It helps you focus on the configs you actually work with
+- It does **not** grant additional access beyond what your URSA session allows
 
 **Recommended practice (Product Managers):**
 
@@ -40,11 +40,11 @@ Profiles include:
 Profiles do **not** change what you are allowed to see or execute in URSA.
 
 ### Save / Apply / Share
-- **Save Profile**: Captures your current rules + visibility settings into a named snapshot.
-- **Apply Profile**: Replaces your current rules and visibility settings with the profile’s snapshot (you will be asked to confirm because this is destructive).
-- **Share Profile**: Makes the profile visible to other allowlisted users who share at least one URSA approval pool with you.
+- **Save Profile**: Captures your current rules + visibility settings into a named snapshot
+- **Apply Profile**: Replaces your current rules and visibility settings with the profile's snapshot (you will be asked to confirm because this is destructive)
+- **Share Profile**: Makes the profile visible to other users who share at least one URSA approval pool with you (determined by URSA session data)
 
-Shared profiles can be applied by users who share approval group membership with the profile owner.
+Shared profiles can be applied by users who share approval pool overlap with the profile owner.
 
 ### Config Groups and Profiles
 Config Groups are a **Rules-only** feature: a Config Group is a named list of config names that you can target from a rule.

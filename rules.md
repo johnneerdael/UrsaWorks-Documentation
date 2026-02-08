@@ -78,13 +78,13 @@ Config groups have their own **Shared** toggle in the Config Groups dialog.
 
 What “Shared” means:
 
-- A shared config group can be **seen and used** by other approved users.
-- Sharing is **not public**: the server restricts visibility to users whose **URSA approval pools overlap** with the owner’s pools.
+- A shared config group can be **seen and used** by other users whose URSA sessions show approval pool overlap with yours
+- Sharing is **not public**: the server restricts visibility to users whose **URSA approval pools overlap** with the owner's pools
 
 Important details:
 
-- The pool-overlap restriction is enforced server-side (it’s not just UI).
-- Non-owners can generally **use** shared groups in their rules, but **editing/deleting** is limited to the owner.
+- The pool-overlap restriction is enforced based on URSA session data
+- Non-owners can generally **use** shared groups in their rules, but **editing/deleting** is limited to the owner
 
 ## Profiles and Config Groups
 
