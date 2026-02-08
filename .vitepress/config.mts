@@ -36,8 +36,7 @@ export default defineConfig({
           { text: 'Manual Run', link: '/manual-run' },
           { text: 'User Settings', link: '/user-settings' },
           { text: 'Troubleshooting', link: '/troubleshooting' },
-          { text: 'Security', link: '/security' },
-          { text: 'Admin', link: '/admin' },
+          { text: 'Security', link: '/security' }
         ],
       },
     ],
